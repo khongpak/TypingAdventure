@@ -1,13 +1,11 @@
+﻿using TMPro;
 using UnityEngine;
 
 public class Check : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
+    public TextMeshPro textShow;
+    private string textString;
+  
     // Update is called once per frame
     void Update()
     {
@@ -16,6 +14,7 @@ public class Check : MonoBehaviour
         {
             foreach (char c in Input.inputString)
             {
+                textString = textString + c;
                 if (c == '\b') // ถ้าเป็น Backspace (ปุ่มลบ)
                 {
                     Debug.Log("คุณกดลบค่ะ");
@@ -29,6 +28,9 @@ public class Check : MonoBehaviour
                     Debug.Log("คุณพิมพ์ตัวอักษร: " + c);
                 }
             }
+            textShow.text = textString;
+            
         }
+        
     }
 }
