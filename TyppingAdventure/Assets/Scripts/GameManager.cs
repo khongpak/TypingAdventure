@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour
         allWord = word.text;
         wordLetter = new StringBuilder(word.text);
         Debug.Log(wordLetter.Length);
-        word.text = allWord.Substring(0,1);
-        
         
     }
 
@@ -33,8 +31,11 @@ public class GameManager : MonoBehaviour
                     if(charector == word.text[LetterIndex])
                     {
                         Debug.Log("Correct");
-                        wordLetter[LetterIndex] = 'X';
+                        allWord = "<color=green>"+allWord.Substring(0,LetterIndex+1) + "</color>" +
+                                allWord.Substring(LetterIndex+1);
                         LetterIndex++;
+                        word.text = allWord;
+                        Debug.Log("Word Text :" + word.text[LetterIndex] + "LetterIndex is "+LetterIndex);
                     }
                     else
                     {
