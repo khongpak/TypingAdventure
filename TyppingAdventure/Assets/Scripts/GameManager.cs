@@ -9,15 +9,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]private TextMeshPro word;
 
     private int LetterIndex = 0;
-    StringBuilder wordLetter;
-    string allWord;
+    string wordLetter;
+    private string mergeText;
+    
 
     void Start()
     {
-        allWord = word.text;
-        wordLetter = new StringBuilder(word.text);
+        wordLetter = word.text;
         Debug.Log(wordLetter.Length);
-        
+
     }
 
     void Update()
@@ -28,14 +28,12 @@ public class GameManager : MonoBehaviour
                 foreach(char charector in Input.inputString)
                 {
                     textShow.text = charector.ToString();
-                    if(charector == word.text[LetterIndex])
+                    if(charector == wordLetter[LetterIndex])
                     {
                         Debug.Log("Correct");
-                        allWord = "<color=green>"+allWord.Substring(0,LetterIndex+1) + "</color>" +
-                                allWord.Substring(LetterIndex+1);
+                        mergeText = $"<color=green>{wordLetter.Substring(0,LetterIndex+1)}</color>{wordLetter.Substring(LetterIndex+1)}";
                         LetterIndex++;
-                        word.text = allWord;
-                        Debug.Log("Word Text :" + word.text[LetterIndex] + "LetterIndex is "+LetterIndex);
+                        textShow.text = mergeText;
                     }
                     else
                     {
