@@ -12,13 +12,16 @@ public class GameManager : MonoBehaviour
     private int LetterIndex = 0;
     private string wordLetter;
     private string mergeText;
-    private WordDictionary wordList;
+
+    public WordDictionary wordList;
     
 
     void Start()
     {
+        wordList = FindAnyObjectByType<WordDictionary>();
         wordLetter = word.text;
         Debug.Log(wordList.wordDictionary.Count);
+        Debug.Log(wordList.wordDictionary[0].text);
 
     }
 
