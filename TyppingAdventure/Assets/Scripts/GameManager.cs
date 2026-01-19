@@ -2,25 +2,32 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using System.Text;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]private TextMeshPro textShow;
     [SerializeField]private TextMeshPro word;
-
+   
     private int LetterIndex = 0;
-    string wordLetter;
+    private string wordLetter;
     private string mergeText;
+    private WordDictionary wordList;
     
 
     void Start()
     {
         wordLetter = word.text;
-        Debug.Log(wordLetter.Length);
+        Debug.Log(wordList.wordDictionary.Count);
 
     }
 
     void Update()
+    {
+        WordChecking();
+    }
+
+    private void WordChecking()
     {
         if(LetterIndex < word.text.Count()){
             if(Input.inputString.Length > 0)
@@ -42,6 +49,11 @@ public class GameManager : MonoBehaviour
 
                 }
             }
+        }
+
+        if(LetterIndex == word.text.Count())
+        {
+            Destroy(word);
         }
     }
 }
