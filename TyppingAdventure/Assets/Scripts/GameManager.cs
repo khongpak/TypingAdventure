@@ -3,15 +3,18 @@ using TMPro;
 using System.Linq;
 using System.Text;
 using System.Collections.Generic;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]private TextMeshPro textShow;
     [SerializeField]private TextMeshPro word;
    
-    private int LetterIndex = 0;
+    private int letterIndex = 0;
+    private int wordIndex = 0;
     private string wordLetter;
     private string mergeText;
+    
 
     public WordDictionary wordList;
     
@@ -19,9 +22,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         wordList = FindAnyObjectByType<WordDictionary>();
-        wordLetter = word.text;
-        Debug.Log(wordList.wordDictionary.Count);
-        Debug.Log(wordList.wordDictionary[0].text);
+        //wordLetter = word.text;
+        textShow.text = word.text;
 
     }
 
@@ -32,31 +34,40 @@ public class GameManager : MonoBehaviour
 
     private void WordChecking()
     {
-        if(LetterIndex < word.text.Count()){
-            if(Input.inputString.Length > 0)
+        //Debug.Log("Word Index : " + wordIndex + "WordList :"+wordList.wordDictionary.Count);
+        if(wordIndex < wordList.wordDictionary.Count)
+        { 
+            wordLetter = wordList.wordDictionary[wordIndex].text;
+            if(letterIndex < wordList.wordDictionary[wordIndex].text.Count())
             {
-                foreach(char charector in Input.inputString)
+                //Debug.Log("LetterIndex is :"+letterIndex+" WordList :" +wordList.wordDictionary[wordIndex].text.Count());
+                Debug.Log(wordIndex);
+                if(Input.inputString.Length > 0)
                 {
-                    textShow.text = charector.ToString();
-                    if(charector == wordLetter[LetterIndex])
+                    foreach(char charector in Input.inputString)
                     {
-                        Debug.Log("Correct");
-                        mergeText = $"<color=green>{wordLetter.Substring(0,LetterIndex+1)}</color>{wordLetter.Substring(LetterIndex+1)}";
-                        LetterIndex++;
-                        textShow.text = mergeText;
-                    }
-                    else
-                    {
-                        Debug.Log("Wrong");
-                    }
+                        textShow.text = charector.ToString();
+                        if(charector == wordLetter[letterIndex])
+                        {
+                            Debug.Log("Correct");
+                            mergeText = $"<color=green>{wordLetter.Substring(0,letterIndex+1)}</color>{wordLetter.Substring(letterIndex+1)}";
+                            letterIndex++;
+                            textShow.text = mergeText;
+                        }
+                        else
+                        {
+                            Debug.Log("Wrong");
+                        }
 
+                    }
                 }
             }
-        }
+            else if(letterIndex == word.text.Count())
+            {
+                wordIndex++;
+                letterIndex = 0;
+            }
 
-        if(LetterIndex == word.text.Count())
-        {
-            Destroy(word);
         }
     }
 }
