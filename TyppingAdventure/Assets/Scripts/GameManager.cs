@@ -15,14 +15,12 @@ public class GameManager : MonoBehaviour
     private string wordLetter;
     private string mergeText;
     
-
     public WordDictionary wordList;
     
-
     void Start()
     {
         wordList = FindAnyObjectByType<WordDictionary>();
-        //wordLetter = word.text;
+        wordLetter = wordList.wordDictionary[wordIndex].text;
         textShow.text = word.text;
 
     }
@@ -34,19 +32,17 @@ public class GameManager : MonoBehaviour
 
     private void WordChecking()
     {
-        //Debug.Log("Word Index : " + wordIndex + "WordList :"+wordList.wordDictionary.Count);
         if(wordIndex < wordList.wordDictionary.Count)
         { 
+            Debug.Log("Word Index :" + wordIndex + " WordLetter :" + wordLetter + " LetterIndex :" + letterIndex);
             wordLetter = wordList.wordDictionary[wordIndex].text;
             if(letterIndex < wordList.wordDictionary[wordIndex].text.Count())
             {
-                //Debug.Log("LetterIndex is :"+letterIndex+" WordList :" +wordList.wordDictionary[wordIndex].text.Count());
-                Debug.Log(wordIndex);
                 if(Input.inputString.Length > 0)
                 {
                     foreach(char charector in Input.inputString)
                     {
-                        textShow.text = charector.ToString();
+                        
                         if(charector == wordLetter[letterIndex])
                         {
                             Debug.Log("Correct");
@@ -62,12 +58,15 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            else if(letterIndex == word.text.Count())
+            else if(letterIndex == wordList.wordDictionary[wordIndex].text.Count())
             {
                 wordIndex++;
                 letterIndex = 0;
+                if(wordIndex < wordList.wordDictionary.Count)
+                {
+                    textShow.text = wordList.wordDictionary[wordIndex].text;
+                }
             }
-
         }
     }
 }
