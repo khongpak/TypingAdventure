@@ -567,7 +567,8 @@ MonoBehaviour:
   wordDictionary: []
   words:
   - Dog
-  - Bat
+  - Cot
+  - Fish
   - Fish
 --- !u!1 &930372748
 GameObject:

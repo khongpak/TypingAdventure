@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -14,8 +14,10 @@ public class WordControl : MonoBehaviour
     void Start()
     {
         wordText = GetComponent<TextMeshPro>();
+        wordText.text = WordDictionary.Instance.GetWord();
         Debug.Log(wordText.text);
         wordLetter = wordText.text;
+
     }
 
     void Update()
