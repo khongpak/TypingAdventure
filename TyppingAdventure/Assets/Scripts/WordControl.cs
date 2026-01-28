@@ -27,6 +27,8 @@ public class WordControl : MonoBehaviour
 
     private void WordChecking()
     {
+        Debug.Log(WordDictionary.Instance.GetWordTarget());
+
         if(letterIndex < wordLetter.Count())
         {
             if(Input.inputString.Length > 0)
@@ -39,6 +41,7 @@ public class WordControl : MonoBehaviour
                         mergeText = $"<color=green>{wordLetter.Substring(0,letterIndex+1)}</color>{wordLetter.Substring(letterIndex+1)}";
                         letterIndex++;
                         wordText.text = mergeText;
+                        WordDictionary.Instance.IncreaseWordTarget();
                     }
                     else
                     {
@@ -50,6 +53,7 @@ public class WordControl : MonoBehaviour
             if(letterIndex == wordLetter.Count())
             {
                 Destroy(gameObject);
+                
             }
         }
     }

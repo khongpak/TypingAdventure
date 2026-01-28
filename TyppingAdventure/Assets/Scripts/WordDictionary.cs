@@ -12,6 +12,7 @@ public class WordDictionary : MonoBehaviour
    public List<String> words;
 
    private int wordIndex = 0;
+   private int wordTarget = 0;
 
     void Awake()
     {
@@ -28,9 +29,19 @@ public class WordDictionary : MonoBehaviour
       wordIndex++;
    }
 
+   public void IncreaseWordTarget()
+   {
+      wordTarget++;
+   }
+
    public string GetWord()
    {
       return words[wordIndex];
+   }
+
+   public int GetWordTarget()
+   {
+      return wordTarget;
    }
    
 }
