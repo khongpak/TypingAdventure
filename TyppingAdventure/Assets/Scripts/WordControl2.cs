@@ -1,16 +1,19 @@
+using TMPro;
 using UnityEngine;
 
 public class WordControl2 : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private TextMeshPro word;
+    private string text;
+
     void Start()
     {
-        
+        word = GetComponent<TextMeshPro>();
+        word.text = text;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void getTextWord(string textword)
     {
-        
+        text = textword;
     }
 }
