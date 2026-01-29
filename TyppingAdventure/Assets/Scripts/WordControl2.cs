@@ -12,8 +12,15 @@ public class WordControl2 : MonoBehaviour
         word.text = text;
     }
 
-    public void getTextWord(string textword)
+    public void setTextWord(string textword)
     {
         text = textword;
     }
+
+    public string getTextWord()
+    {
+        return text;
+    }
+
+    
 }

@@ -13,10 +13,21 @@ public class WordDictionary2 : MonoBehaviour
         {
             WordControl2 wordText = Instantiate(wordPrefab,transform.position,transform.rotation);
             wordText.name = "Word:"+wordTextList[wordTextCount];
-            wordText.getTextWord(wordTextList[wordTextCount]);
+            wordText.setTextWord(wordTextList[wordTextCount]);
             wordPrefabList.Add(wordText);
             
         }
         
+    }
+
+    public WordControl2 getWordPrefabList()
+    {
+        return wordPrefabList[0];
+    }
+
+    public void NextWordPrefab()
+    {
+        
+        wordPrefabList.RemoveAt(0);
     }
 }

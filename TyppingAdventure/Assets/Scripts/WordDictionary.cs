@@ -42,6 +42,7 @@ public class WordDictionary : MonoBehaviour
    public int GetWordTarget()
    {
       return wordTarget;
+      
    }
    
 }
