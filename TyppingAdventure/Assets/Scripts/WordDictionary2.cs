@@ -22,12 +22,27 @@ public class WordDictionary2 : MonoBehaviour
 
     public WordControl2 getWordPrefabList()
     {
-        return wordPrefabList[0];
+        if(wordPrefabList.Count > 0)
+        {
+            return wordPrefabList[0];
+        }
+        else
+        {
+            Debug.Log("Empty Words in List");
+            return null;
+        }
     }
 
     public void NextWordPrefab()
     {
-        
-        wordPrefabList.RemoveAt(0);
+        if(wordPrefabList.Count > 0)
+        {
+            wordPrefabList[0].DestroyYouSelf();
+            wordPrefabList.RemoveAt(0);
+        }
+        else
+        {
+            Debug.Log("Empty Words in List");
+        }
     }
 }

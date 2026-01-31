@@ -15,11 +15,22 @@ public class WordControl2 : MonoBehaviour
     public void setTextWord(string textword)
     {
         text = textword;
+        
     }
 
     public string getTextWord()
     {
         return text;
+    }
+
+    public void modifyTextWord(string textInput)
+    {
+        word.text = textInput;
+    }
+
+    public void DestroyYouSelf()
+    {
+        Destroy(gameObject);
     }
 
     

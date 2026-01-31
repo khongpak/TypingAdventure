@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public string myWord;
     
     private int letterIndex = 0;
+    private string mergeText;
 
     private void Start()
     {
@@ -34,6 +35,8 @@ public class GameManager : MonoBehaviour
                 {
                     if(charector == myWord[letterIndex])
                     {
+                        mergeText = $"<color=green>{myWord.Substring(0,letterIndex+1)}</color>{myWord.Substring(letterIndex+1)}";
+                        wordDictionary2.wordPrefabList[0].modifyTextWord(mergeText);
                         Debug.Log("Correct");
                         letterIndex++;
                     }
@@ -55,9 +58,11 @@ public class GameManager : MonoBehaviour
 
     private void NextWord()
     {
-        
-        myWord = wordDictionary2.getWordPrefabList().getTextWord();
-        letterIndex = 0;
-        Debug.Log($"My word is {myWord}. It has {myWord.Count()} letters. My letterIndex is {letterIndex}");
+        if(wordDictionary2.getWordPrefabList() != null)
+        {
+            myWord = wordDictionary2.getWordPrefabList().getTextWord();
+            letterIndex = 0;
+            Debug.Log($"My word is {myWord}. It has {myWord.Count()} letters. My letterIndex is {letterIndex}");
+        }
     }
 }
