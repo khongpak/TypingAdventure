@@ -7,19 +7,34 @@ public class WordDictionary2 : MonoBehaviour
     public List<WordControl2> wordPrefabList = new List<WordControl2>();
     public WordControl2 wordPrefab;
 
+
+
+    private Vector2 spawnPosition;
+    private float spawnPositionX;
+    private float spawnPositionY;
+
     void Start()
+    {
+        SpawnWord();
+        
+    }
+
+
+    private void SpawnWord()
     {
         for(int wordTextCount = 0; wordTextCount < wordTextList.Count; wordTextCount++)
         {
-            WordControl2 wordText = Instantiate(wordPrefab,transform.position,transform.rotation);
+            spawnPositionX = Random.Range(-5.0f,5.0f);
+            spawnPositionY = Random.Range(6f,7f);
+            spawnPosition = new Vector2(spawnPositionX,spawnPositionY);
+
+            WordControl2 wordText = Instantiate(wordPrefab,spawnPosition,transform.rotation);
             wordText.name = "Word:"+wordTextList[wordTextCount];
             wordText.setTextWord(wordTextList[wordTextCount]);
             wordPrefabList.Add(wordText);
             
         }
-        
     }
-
     public WordControl2 getWordPrefabList()
     {
         if(wordPrefabList.Count > 0)
@@ -45,4 +60,6 @@ public class WordDictionary2 : MonoBehaviour
             Debug.Log("Empty Words in List");
         }
     }
+
+    
 }
