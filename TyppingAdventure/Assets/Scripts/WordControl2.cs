@@ -7,6 +7,7 @@ public class WordControl2 : MonoBehaviour
     private TextMeshPro word;
     private string text;
     private float SpeedTextFall;
+    private bool wordActive = false;
 
     private void Start()
     {
@@ -17,7 +18,10 @@ public class WordControl2 : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector2(transform.position.x,transform.position.y - SpeedTextFall * Time.deltaTime);
+        if(wordActive)
+        {
+            transform.position = new Vector2(transform.position.x,transform.position.y - SpeedTextFall * Time.deltaTime);
+        }
     }
 
     public void setTextWord(string textword)
@@ -39,6 +43,11 @@ public class WordControl2 : MonoBehaviour
     public void DestroyYouSelf()
     {
         Destroy(gameObject);
+    }
+
+    public void WordActive(bool active)
+    {
+        wordActive = active;
     }
 
     

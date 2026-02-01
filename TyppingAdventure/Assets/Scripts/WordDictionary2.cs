@@ -33,6 +33,7 @@ public class WordDictionary2 : MonoBehaviour
             wordText.setTextWord(wordTextList[wordTextCount]);
             wordPrefabList.Add(wordText);
             
+            
         }
     }
     public WordControl2 getWordPrefabList()

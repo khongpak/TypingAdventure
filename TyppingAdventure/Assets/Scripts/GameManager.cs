@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 using UnityEngine.Rendering.Universal;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       NextWord();
+        StartCoroutine(SpawnWord());
+        NextWord();
+        
     }
 
     private void Update()
@@ -63,6 +66,15 @@ public class GameManager : MonoBehaviour
             myWord = wordDictionary2.getWordPrefabList().getTextWord();
             letterIndex = 0;
             Debug.Log($"My word is {myWord}. It has {myWord.Count()} letters. My letterIndex is {letterIndex}");
+        }
+    }
+
+    private IEnumerator SpawnWord()
+    {
+        Debug.Log($"Word PrefabList Count : {wordDictionary2.wordPrefabList.Count}");
+        for(int i = 0; i < wordDictionary2.wordPrefabList.Count; i++){
+            yield return new WaitForSeconds(5f);
+            wordDictionary2.wordPrefabList[i].WordActive(true);
         }
     }
 }
