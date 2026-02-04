@@ -13,6 +13,8 @@ public class WordDictionary2 : MonoBehaviour
     private float spawnPositionX;
     private float spawnPositionY;
 
+    private int wordPrefabListIndex = 0;
+
     void Start()
     {
         SpawnWord();
@@ -40,7 +42,7 @@ public class WordDictionary2 : MonoBehaviour
     {
         if(wordPrefabList.Count > 0)
         {
-            return wordPrefabList[0];
+            return wordPrefabList[wordPrefabListIndex];
         }
         else
         {
@@ -53,8 +55,11 @@ public class WordDictionary2 : MonoBehaviour
     {
         if(wordPrefabList.Count > 0)
         {
-            wordPrefabList[0].DestroyYouSelf();
-            wordPrefabList.RemoveAt(0);
+            wordPrefabList[wordPrefabListIndex].WordActive(false);
+            wordPrefabListIndex++;
+
+            // wordPrefabList[0].DestroyYouSelf();
+            // wordPrefabList.RemoveAt(0);
         }
         else
         {

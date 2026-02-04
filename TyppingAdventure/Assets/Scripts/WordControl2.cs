@@ -11,6 +11,7 @@ public class WordControl2 : MonoBehaviour
 
     private void Start()
     {
+        gameObject.SetActive(false);
         word = GetComponent<TextMeshPro>();
         word.text = text;
         SpeedTextFall= Random.Range(0.2f,0.5f);
@@ -48,6 +49,8 @@ public class WordControl2 : MonoBehaviour
     public void WordActive(bool active)
     {
         wordActive = active;
+        gameObject.SetActive(active);
+        
     }
 
     
