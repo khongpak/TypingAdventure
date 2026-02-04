@@ -11,9 +11,12 @@ public class GameManager : MonoBehaviour
     public WordDictionary2 wordDictionary2;
     public string myWord;
     
+    [SerializeField]private float delayTimeSpawn = 5f;
+
     private int letterIndex = 0;
     private string mergeText;
     private int wordIndex = 0;
+    public bool nextWordNow = true;
 
     private void Start()
     {
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void WordChecking()
     {
-        //Debug.Log($"My letterIndex is {letterIndex}. My Word Count is {myWord.Count()}");
+        
         if(letterIndex < myWord.Count())
         {
             //Debug.Log("Step1 Pass");
@@ -43,6 +46,7 @@ public class GameManager : MonoBehaviour
                         wordDictionary2.wordPrefabList[wordIndex].modifyTextWord(mergeText);
                         Debug.Log("Correct");
                         letterIndex++;
+                        nextWordNow = true;
                     }
                     else
                     {
@@ -51,7 +55,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if(letterIndex == myWord.Count())
+            if(letterIndex == myWord.Count() && wordIndex < wordDictionary2.wordPrefabList.Count-1)
             {
                 wordDictionary2.NextWordPrefab();
                 NextWord();
@@ -75,7 +79,15 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Word PrefabList Count : {wordDictionary2.wordPrefabList.Count}");
         for(int i = 0; i < wordDictionary2.wordPrefabList.Count; i++){
-            yield return new WaitForSeconds(5f);
+            if(!nextWordNow){
+                yield return new WaitForSeconds(delayTimeSpawn); 
+            }
+            else
+            {
+                nextWordNow = false;
+                yield return new WaitForSeconds(0);
+            }
+            
             wordDictionary2.wordPrefabList[i].WordActive(true);
         }
     }
