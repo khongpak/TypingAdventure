@@ -26,8 +26,8 @@ public class WordDictionary2 : MonoBehaviour
     {
         for(int wordTextCount = 0; wordTextCount < wordTextList.Count; wordTextCount++)
         {
-            spawnPositionX = Random.Range(-5.0f,5.0f);
-            spawnPositionY = Random.Range(6f,7f);
+            spawnPositionX = Random.Range(-6f,6.0f);
+            spawnPositionY = 5f;
             spawnPosition = new Vector2(spawnPositionX,spawnPositionY);
 
             WordControl2 wordText = Instantiate(wordPrefab,spawnPosition,transform.rotation);
@@ -53,7 +53,8 @@ public class WordDictionary2 : MonoBehaviour
 
     public void NextWordPrefab()
     {
-        if(wordPrefabList.Count > 0)
+        Debug.Log($"Word PrefabListIndex is {wordPrefabListIndex}. WordPreCou is {wordPrefabList.Count}");
+        if(wordPrefabListIndex < wordPrefabList.Count)
         {
             wordPrefabList[wordPrefabListIndex].WordActive(false);
             wordPrefabListIndex++;
@@ -63,6 +64,7 @@ public class WordDictionary2 : MonoBehaviour
         }
         else
         {
+            
             Debug.Log("Empty Words in List");
         }
     }

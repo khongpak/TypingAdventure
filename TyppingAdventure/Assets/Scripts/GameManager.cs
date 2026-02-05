@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
                         wordDictionary2.wordPrefabList[wordIndex].modifyTextWord(mergeText);
                         Debug.Log("Correct");
                         letterIndex++;
-                        nextWordNow = true;
+                        
                     }
                     else
                     {
@@ -79,15 +79,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Word PrefabList Count : {wordDictionary2.wordPrefabList.Count}");
         for(int i = 0; i < wordDictionary2.wordPrefabList.Count; i++){
-            if(!nextWordNow){
-                yield return new WaitForSeconds(delayTimeSpawn); 
-            }
-            else
-            {
-                nextWordNow = false;
-                yield return new WaitForSeconds(0);
-            }
-            
+            yield return new WaitForSeconds(delayTimeSpawn); 
             wordDictionary2.wordPrefabList[i].WordActive(true);
         }
     }

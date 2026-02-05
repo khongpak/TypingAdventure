@@ -298,6 +298,37 @@ RectTransform:
   m_AnchoredPosition: {x: 5.99, y: 0.5}
   m_SizeDelta: {x: 20, y: 4.1733}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &345670015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 345670016}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &345670016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345670015}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.76, y: 6.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,9 +638,6 @@ MonoBehaviour:
   wordTextList:
   - Cat
   - Dog
-  - Fish
-  - Bat
-  - Sea
   wordPrefabList: []
   wordPrefab: {fileID: -2732323430450565169, guid: 8b88ff3a7ec439442b777d0800de37f3, type: 3}
 --- !u!4 &1115359220
@@ -621,7 +649,7 @@ Transform:
   m_GameObject: {fileID: 1115359218}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.88787, y: -0.39941, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -673,6 +701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   wordDictionary2: {fileID: 1115359219}
   myWord: 
+  delayTimeSpawn: 3
+  nextWordNow: 1
 --- !u!1001 &8061552661524084859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -784,3 +814,4 @@ SceneRoots:
   - {fileID: 1693329794}
   - {fileID: 675415355}
   - {fileID: 1115359220}
+  - {fileID: 345670016}

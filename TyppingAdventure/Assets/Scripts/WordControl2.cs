@@ -6,7 +6,7 @@ public class WordControl2 : MonoBehaviour
 {
     private TextMeshPro word;
     private string text;
-    private float SpeedTextFall;
+    [SerializeField]private float SpeedTextFall = 1f;
     private bool wordActive = false;
 
     private void Start()
@@ -14,7 +14,7 @@ public class WordControl2 : MonoBehaviour
         gameObject.SetActive(false);
         word = GetComponent<TextMeshPro>();
         word.text = text;
-        SpeedTextFall= Random.Range(0.2f,0.5f);
+        
     }
 
     private void Update()
