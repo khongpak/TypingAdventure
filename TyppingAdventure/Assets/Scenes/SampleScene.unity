@@ -638,6 +638,9 @@ MonoBehaviour:
   wordTextList:
   - Cat
   - Dog
+  - Fish
+  - Bat
+  - Seesaw
   wordPrefabList: []
   wordPrefab: {fileID: -2732323430450565169, guid: 8b88ff3a7ec439442b777d0800de37f3, type: 3}
 --- !u!4 &1115359220
