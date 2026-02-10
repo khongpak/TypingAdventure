@@ -62,6 +62,10 @@ public class WordDictionary2 : MonoBehaviour
             // wordPrefabList[0].DestroyYouSelf();
             // wordPrefabList.RemoveAt(0);
         }
+        else if(wordPrefabListIndex == wordPrefabList.Count)
+        {
+            wordPrefabList[wordPrefabListIndex-1].WordActive(false);
+        }
         else
         {
             

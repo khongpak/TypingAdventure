@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
                 NextWord();
                 wordIndex++;
                 
+            }else if(letterIndex == myWord.Count() && wordIndex == wordDictionary2.wordPrefabList.Count - 1)
+            {
+                wordDictionary2.NextWordPrefab();
             }
         }
     }
