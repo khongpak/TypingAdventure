@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class WordDictionary2 : MonoBehaviour
@@ -6,8 +7,7 @@ public class WordDictionary2 : MonoBehaviour
     public List<string> wordTextList = new List<string>();
     public List<WordControl2> wordPrefabList = new List<WordControl2>();
     public WordControl2 wordPrefab;
-
-
+    public string fileOfWord;
 
     private Vector2 spawnPosition;
     private float spawnPositionX;
@@ -17,6 +17,7 @@ public class WordDictionary2 : MonoBehaviour
 
     void Start()
     {
+        GetWordsFromFile();
         SpawnWord();
         
     }
@@ -38,6 +39,7 @@ public class WordDictionary2 : MonoBehaviour
             
         }
     }
+
     public WordControl2 getWordPrefabList()
     {
         if(wordPrefabList.Count > 0)
@@ -62,14 +64,29 @@ public class WordDictionary2 : MonoBehaviour
             // wordPrefabList[0].DestroyYouSelf();
             // wordPrefabList.RemoveAt(0);
         }
-        else if(wordPrefabListIndex == wordPrefabList.Count)
-        {
-            wordPrefabList[wordPrefabListIndex-1].WordActive(false);
-        }
         else
         {
             
             Debug.Log("Empty Words in List");
+        }
+    }
+
+    private void GetWordsFromFile()
+    {
+        fileOfWord = Path.Combine(Application.streamingAssetsPath,"vocabulary.txt");
+        if (File.Exists(fileOfWord))
+        {
+            Debug.Log("File Of Words is already");
+            string[] line = File.ReadAllLines(fileOfWord);
+            for(int i =0; i < line.Length; i++)
+            {
+                wordTextList.Add(line[i]);
+            }
+            
+        }
+        else
+        {
+            Debug.Log("Can't Found File Of Words");
         }
     }
 

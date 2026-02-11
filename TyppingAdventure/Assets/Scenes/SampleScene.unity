@@ -635,14 +635,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a4e59b7a8e6b541b1edbe8e39d548a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WordDictionary2
-  wordTextList:
-  - Cat
-  - Dog
-  - Fish
-  - Bat
-  - Seesaw
+  wordTextList: []
   wordPrefabList: []
   wordPrefab: {fileID: -2732323430450565169, guid: 8b88ff3a7ec439442b777d0800de37f3, type: 3}
+  fileOfWord: 
 --- !u!4 &1115359220
 Transform:
   m_ObjectHideFlags: 0
