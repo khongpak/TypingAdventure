@@ -77,10 +77,20 @@ public class WordDictionary2 : MonoBehaviour
         if (File.Exists(fileOfWord))
         {
             Debug.Log("File Of Words is already");
-            string[] line = File.ReadAllLines(fileOfWord);
-            for(int i =0; i < line.Length; i++)
+            string[] wordReadLine = File.ReadAllLines(fileOfWord);
+            
+            //Randdom Word in wordReadLine//
+            for(int i = 0; i< wordReadLine.Length; i++)
             {
-                wordTextList.Add(line[i]);
+                string temp = wordReadLine[i];
+                int randdomIndex = Random.Range(i,wordReadLine.Length);
+                wordReadLine[i] = wordReadLine[randdomIndex];
+                wordReadLine[randdomIndex] = temp;
+            }
+
+            for(int i =0; i < wordReadLine.Length; i++)
+            {
+                wordTextList.Add(wordReadLine[i]);
             }
             
         }
