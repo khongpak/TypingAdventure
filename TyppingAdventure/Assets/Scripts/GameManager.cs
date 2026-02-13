@@ -8,18 +8,34 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     public WordDictionary2 wordDictionary2;
     public string myWord;
     
     [SerializeField]private float delayTimeSpawn = 5f;
+    [SerializeField]private TextMeshProUGUI scoreShow;
+    [SerializeField]private TextMeshProUGUI healthShow;
 
     private int letterIndex = 0;
     private string mergeText;
     private int wordIndex = 0;
+    
+    private int score = 0;
+    private int health = 10;
+    private int timeCountToReset;
+
     public bool nextWordNow = true;
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
+        timeCountToReset = wordDictionary2.wordPrefabList.Count;
         StartCoroutine(SpawnWord());
         NextWord();
         
@@ -27,7 +43,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        scoreShow.text = "Score : " + score;
+        healthShow.text = "Health : " + health;
         WordChecking();
+        Debug.Log(timeCountToReset);
     }
 
     private void WordChecking()
@@ -50,6 +69,7 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         Debug.Log("Incorrect");
+                        score--;
                     }
                 }
             }
@@ -59,8 +79,11 @@ public class GameManager : MonoBehaviour
                 wordDictionary2.NextWordPrefab();
                 NextWord();
                 wordIndex++;
+                score++;
+                timeCountToReset--;
                 
-            }else if(letterIndex == myWord.Count() && wordIndex == wordDictionary2.wordPrefabList.Count - 1)
+                
+            }else if((letterIndex == myWord.Count() && wordIndex == wordDictionary2.wordPrefabList.Count - 1) || timeCountToReset ==0)
             {
                 ResetWords();
             }
@@ -80,6 +103,7 @@ public class GameManager : MonoBehaviour
     private void ResetWords()
     {
         wordIndex = 0;
+        timeCountToReset = wordDictionary2.wordPrefabList.Count;
 
         for(int i = 0; i < wordDictionary2.wordPrefabList.Count; i++)
         {
@@ -102,6 +126,12 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(delayTimeSpawn); 
             wordDictionary2.wordPrefabList[i].WordActive(true);
         }
+    }
+
+    public void DecreaseHealth()
+    {
+        health--;
+        timeCountToReset--;
     }
 
     

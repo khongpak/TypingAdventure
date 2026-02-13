@@ -1,2 +1,7 @@
 sea
 fish
+dog
+cat
+bat
+hat
+hot

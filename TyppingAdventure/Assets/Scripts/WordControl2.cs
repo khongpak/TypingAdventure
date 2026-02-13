@@ -25,6 +25,17 @@ public class WordControl2 : MonoBehaviour
         }
     }
 
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.tag == "DeadZone")
+        {
+            Debug.Log("You Dead2");
+            gameObject.SetActive(false);
+            GameManager.Instance.DecreaseHealth();
+        }
+    }
+
     public void setTextWord(string textword)
     {
         text = textword;
