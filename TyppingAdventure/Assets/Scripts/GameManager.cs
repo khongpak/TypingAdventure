@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         scoreShow.text = "Score : " + score;
         healthShow.text = "Health : " + health;
         WordChecking();
-        Debug.Log(timeCountToReset);
+        
     }
 
     private void WordChecking()
