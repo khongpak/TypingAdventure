@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
         
         if(letterIndex < myWord.Count())
         {
-            //Debug.Log("Step1 Pass");
             if(Input.inputString.Length > 0)
             {
                 foreach(char charector in Input.inputString)
@@ -63,7 +62,7 @@ public class GameManager : MonoBehaviour
                 
             }else if(letterIndex == myWord.Count() && wordIndex == wordDictionary2.wordPrefabList.Count - 1)
             {
-                wordDictionary2.NextWordPrefab();
+                ResetWords();
             }
         }
     }
@@ -78,12 +77,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ResetWords()
+    {
+        wordIndex = 0;
+
+        for(int i = 0; i < wordDictionary2.wordPrefabList.Count; i++)
+        {
+            mergeText = $"<color=white>{wordDictionary2.wordPrefabList[i].getTextWord()}</color>";
+            wordDictionary2.wordPrefabList[i].modifyTextWord(mergeText);
+            wordDictionary2.wordPrefabList[i].SetSpeedUp(0.1f);
+        }
+
+        wordDictionary2.NextWordPrefab();
+        wordDictionary2.ResetWordPrefab();
+        NextWord();
+        StartCoroutine(SpawnWord());
+    }
+
+
     private IEnumerator SpawnWord()
     {
-        Debug.Log($"Word PrefabList Count : {wordDictionary2.wordPrefabList.Count}");
+        //Debug.Log($"Word PrefabList Count : {wordDictionary2.wordPrefabList.Count}");
         for(int i = 0; i < wordDictionary2.wordPrefabList.Count; i++){
             yield return new WaitForSeconds(delayTimeSpawn); 
             wordDictionary2.wordPrefabList[i].WordActive(true);
         }
     }
+
+    
 }

@@ -1,5 +1,2 @@
 sea
 fish
-horse
-house
-zebra

@@ -53,5 +53,10 @@ public class WordControl2 : MonoBehaviour
         
     }
 
+    public void SetSpeedUp(float speed)
+    {
+        SpeedTextFall += speed;
+    }
+
     
 }

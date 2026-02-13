@@ -55,7 +55,7 @@ public class WordDictionary2 : MonoBehaviour
 
     public void NextWordPrefab()
     {
-        Debug.Log($"Word PrefabListIndex is {wordPrefabListIndex}. WordPreCou is {wordPrefabList.Count}");
+        //Debug.Log($"Word PrefabListIndex is {wordPrefabListIndex}. WordPreCou is {wordPrefabList.Count}");
         if(wordPrefabListIndex < wordPrefabList.Count)
         {
             wordPrefabList[wordPrefabListIndex].WordActive(false);
@@ -66,9 +66,19 @@ public class WordDictionary2 : MonoBehaviour
         }
         else
         {
-            
+            ResetWordPrefab();
             Debug.Log("Empty Words in List");
         }
+    }
+
+    public void ResetWordPrefab()
+    {
+        wordPrefabListIndex = 0;
+        for(int i = 0; i < wordPrefabList.Count; i++)
+        {
+            wordPrefabList[i].transform.position = new Vector2(Random.Range(-6f,6f),5f);
+        }
+
     }
 
     private void GetWordsFromFile()
