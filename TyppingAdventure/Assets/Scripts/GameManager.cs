@@ -9,9 +9,11 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    
 
     public WordDictionary2 wordDictionary2;
     public string myWord;
+    public AudioManager playSound;
     
     [SerializeField]private float delayTimeSpawn = 5f;
     [SerializeField]private TextMeshProUGUI scoreShow;
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        playSound.BGMSound(0);
         timeCountToReset = wordDictionary2.wordPrefabList.Count;
         StartCoroutine(SpawnWord());
         NextWord();
@@ -60,16 +63,20 @@ public class GameManager : MonoBehaviour
                 {
                     if(charector == myWord[letterIndex])
                     {
+                        
                         mergeText = $"<color=green>{myWord.Substring(0,letterIndex+1)}</color>{myWord.Substring(letterIndex+1)}";
                         wordDictionary2.wordPrefabList[wordIndex].modifyTextWord(mergeText);
                         Debug.Log("Correct");
                         letterIndex++;
+                        playSound.EffectSound(0);
+                        
                         
                     }
                     else
                     {
                         Debug.Log("Incorrect");
                         score--;
+                        playSound.EffectSound(1);
                     }
                 }
             }
@@ -107,7 +114,7 @@ public class GameManager : MonoBehaviour
 
         for(int i = 0; i < wordDictionary2.wordPrefabList.Count; i++)
         {
-            mergeText = $"<color=white>{wordDictionary2.wordPrefabList[i].getTextWord()}</color>";
+            mergeText = $"<color=black>{wordDictionary2.wordPrefabList[i].getTextWord()}</color>";
             wordDictionary2.wordPrefabList[i].modifyTextWord(mergeText);
             wordDictionary2.wordPrefabList[i].SetSpeedUp(0.1f);
         }
