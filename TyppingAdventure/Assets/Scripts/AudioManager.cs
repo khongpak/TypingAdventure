@@ -21,5 +21,15 @@ public class AudioManager : MonoBehaviour
     {
         bgmSound[bgmIndex].Play();
     }
+
+    public void StopEffectSound(int effectIndex)
+    {
+        typingSoundEffect[effectIndex].Stop();
+    }
+
+     public void StopBGMSound(int bgmIndex)
+    {
+        bgmSound[bgmIndex].Stop();
+    }
 }
     

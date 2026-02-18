@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private float delayTimeSpawn = 5f;
     [SerializeField]private TextMeshProUGUI scoreShow;
     [SerializeField]private TextMeshProUGUI healthShow;
+    [SerializeField]private GameObject gameOverScreen;
 
     private int letterIndex = 0;
     private string mergeText;
@@ -26,9 +27,9 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private int health = 10;
     private int timeCountToReset;
+    private bool isAudioTurnOn = false;
 
     public bool nextWordNow = true;
-
 
     private void Awake()
     {
@@ -46,9 +47,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        scoreShow.text = "Score : " + score;
-        healthShow.text = "Health : " + health;
-        WordChecking();
+        if(health > 0)
+        {
+            scoreShow.text = "Score : " + score;
+            healthShow.text = "Health : " + health;
+            WordChecking();
+        }
+        else
+        {
+            GameOver();
+            
+        }
         
     }
 
@@ -75,7 +84,14 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         Debug.Log("Incorrect");
-                        score--;
+                        if(score > 0)
+                        {
+                            score--;
+                        }
+                        else
+                        {
+                            health--;
+                        }
                         playSound.EffectSound(1);
                     }
                 }
@@ -83,6 +99,7 @@ public class GameManager : MonoBehaviour
 
             if(letterIndex == myWord.Count() && wordIndex < wordDictionary2.wordPrefabList.Count-1)
             {
+                playSound.EffectSound(2);
                 wordDictionary2.NextWordPrefab();
                 NextWord();
                 wordIndex++;
@@ -92,6 +109,7 @@ public class GameManager : MonoBehaviour
                 
             }else if((letterIndex == myWord.Count() && wordIndex == wordDictionary2.wordPrefabList.Count - 1) || timeCountToReset ==0)
             {
+                playSound.EffectSound(2);
                 ResetWords();
             }
         }
@@ -101,6 +119,7 @@ public class GameManager : MonoBehaviour
     {
         if(wordDictionary2.getWordPrefabList() != null)
         {
+            
             myWord = wordDictionary2.getWordPrefabList().getTextWord();
             letterIndex = 0;
             Debug.Log($"My word is {myWord}. It has {myWord.Count()} letters. My letterIndex is {letterIndex}");
@@ -141,5 +160,20 @@ public class GameManager : MonoBehaviour
         timeCountToReset--;
     }
 
-    
+    private void GameOver()
+    {
+        if(!isAudioTurnOn)
+        {
+            playSound.StopBGMSound(0);
+            playSound.BGMSound(1);
+            healthShow.text = "Health : 0";
+            gameOverScreen.SetActive(true);
+        }
+
+        isAudioTurnOn = true;
+
+        for(int i = 0; i < wordDictionary2.wordPrefabList.Count; i++){
+            wordDictionary2.wordPrefabList[i].WordActive(false);
+        }
+    }
 }
